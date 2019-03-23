@@ -1,0 +1,6 @@
+.tern-project
+*.sublime-project
+*.sublime-workspace
+*.idea
+.nvmrc
+*.vscode

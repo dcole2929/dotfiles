@@ -1,0 +1,18 @@
+"\e[1~": beginning-of-line
+"\e[4~": end-of-line
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+"\e[3~": delete-char
+"\e[2~": quoted-insert
+"\e[5C": forward-word
+"\e[5D": backward-word
+
+set show-all-if-ambiguous on
+set completion-ignore-case off
+set completion-map-case on
+set visible-stats on
+"\t": menu-complete
+
+# Include system wide settings which are ignored
+# by default if one has their own .inputrc
+$include /etc/inputrc

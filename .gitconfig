@@ -1,0 +1,25 @@
+[user]
+	name = Doug Farmer
+	email = dfarmer@underarmour.com
+
+[alias]
+co  = checkout
+ci  = commit
+civ = commit --no-verify
+st  = status
+br  = branch
+mt  = mergetool
+
+#From: http://blog.apiaxle.com/post/handy-git-tips-to-stop-you-getting-fired/
+ignore   = update-index --assume-unchanged
+unignore = update-index --no-assume-unchanged
+ignored  = "!git ls-files -v | grep ^h | cut -c 3-"
+[push]
+	default = simple
+[merge]
+	defaultToUpstream = true
+	tool=kdiff3
+[core]
+	excludesfile = /Users/dfarmer/.gitignore_global
+	preloadindex = true
+	editor = /usr/local/bin/code -w
