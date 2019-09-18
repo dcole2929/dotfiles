@@ -1,6 +1,6 @@
 [user]
 	name = Doug Farmer
-	email = dfarmer@underarmour.com
+	email = dcole2929@gmail.com
 
 [alias]
 co  = checkout
@@ -20,6 +20,9 @@ ignored  = "!git ls-files -v | grep ^h | cut -c 3-"
 	defaultToUpstream = true
 	tool=kdiff3
 [core]
-	excludesfile = /Users/dfarmer/.gitignore_global
+	excludesfile = /Users/doug/.gitignore_global
 	preloadindex = true
 	editor = /usr/local/bin/code -w
+
+[includeIf "gitdir:~/dev/the_line"]
+    path = ~/dev/the_line

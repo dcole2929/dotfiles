@@ -1,9 +1,8 @@
 # If you come from bash you might have to change your $PATH.
-#export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=/Users/dfarmer/dev/team-kube/.kubectl:/Users/dfarmer/.nvm/versions/node/v6.11.0/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/dfarmer/.oh-my-zsh
+export ZSH=/Users/doug/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -52,10 +51,12 @@ CASE_SENSITIVE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(kubectl ua-order git git-extras git-flow colored-man colorize brew osx npm docker node sudo web-search zsh-autosuggestions)
+plugins=(kubectl git git-extras git-flow colored-man-pages colorize brew osx npm docker node sudo web-search zsh-autosuggestions asdf)
 
 source $ZSH/oh-my-zsh.sh
-compinit
+
+autoload -Uz compinit && compinit
+
 
 # User configuration
 
@@ -108,34 +109,14 @@ if [ -f ~/.aliases.sh ]; then
     . ~/.aliases.sh
 fi
 
-export NVM_DIR=~/.nvm
-source $(brew --prefix nvm)/nvm.sh
-
-# place this after nvm initialization!
-autoload -U add-zsh-hook
-load-nvmrc() {
-  local node_version="$(nvm version)"
-  local nvmrc_path="$(nvm_find_nvmrc)"
-
-  if [ -n "$nvmrc_path" ]; then
-    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-    if [ "$nvmrc_node_version" = "N/A" ]; then
-      nvm install
-    elif [ "$nvmrc_node_version" != "$node_version" ]; then
-      nvm use
-    fi
-  elif [ "$node_version" != "$(nvm version default)" ]; then
-    echo "Reverting to nvm default version"
-    nvm use default
-  fi
-}
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
-
-export IDC_USER="27484-user"
 
 # Go 
-# export GOROOT=/usr/local/opt/go/libexec
-# export GOPATH=$HOME/dev/go
-# export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+export GOROOT=/usr/local/opt/go/libexec
+export GOPATH=$HOME/dev/go
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+export ASDF_DIR=$(brew --prefix asdf)
+
+# asdf package manager
+. $ASDF_DIR/asdf.sh

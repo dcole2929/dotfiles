@@ -21,32 +21,6 @@ trash () { command mv "$@" ~/.Trash ; }     # trash:        Moves a file to the 
 ql () { qlmanage -p "$*" >& /dev/null; }    # ql:           Opens any file in MacOS Quicklook Preview
 alias DT='tee ~/Desktop/terminalOut.txt'    # DT:           Pipe content to file on MacOS Desktop
 
-# kube envs
-alias staging-green="kubectl --kubeconfig=/Users/dfarmer/.kube/envs/tools-staging-green.ua-ecm.com.yaml"
-alias staging-blue="kubectl --kubeconfig=/Users/dfarmer/.kube/envs/tools-staging-blue.ua-ecm.com.yaml"
-alias staging-consumers="kubectl --kubeconfig=/Users/dfarmer/.kube/envs/tools-staging-consumers.ua-ecm.com.yaml"
-alias prod-black="kubectl --kubeconfig=/Users/dfarmer/.kube/envs/tools-production-black.ua-ecm.com.yaml"
-alias prod-red="kubectl --kubeconfig=/Users/dfarmer/.kube/envs/tools-production-red.ua-ecm.com.yaml"
-alias prod-consumers="kubectl --kubeconfig=/Users/dfarmer/.kube/envs/tools-production-consumers.ua-ecm.com.yaml"
-
-# publish an npm artifact for ua-checkout
-ua-checkout-publish () {
-  (cd ~/dev/ua-checkout && rm -rf node_modules/ && npm cache clear --force && npm install && npm run lint && npm run mocha && cd .. && npm publish ua-checkout)
-}
-
-ua-publish () {
-  mydir=`pwd`
-  (rm -rf node_modules/ && npm cache clear --force && npm install && npm run build:dll && npm run lint && npm run mocha && cd .. && npm publish $mydir)
-}
-
-alias teleport-mongo-staging='tsh --proxy teleport-data-staging.ua-ecm.com -l teleport-user ssh -L mongodb-staging:27017:192.168.150.10:19928 bastion'
-alias teleport-mongo-prod='tsh --proxy teleport-data-prod.ua-ecm.com -l teleport-user ssh -L mongodb-production:27017:192.168.50.10:15903 bastion'
-alias teleport-mssql-staging='tsh --proxy teleport-data-staging.ua-ecm.com -l teleport-user ssh -L 127.0.0.20:1433:ua-mssql-staging.cycp4qzg0cxv.us-east-2.rds.amazonaws.com:1433 bastion'
-alias teleport-mssql-prod='tsh --proxy teleport-data-prod.ua-ecm.com -l teleport-user ssh \
-    -L aws-production-sql:1433:ua-mssql-production.ct2obelbzcva.us-east-1.rds.amazonaws.com:1433 \
-    -L aws-production-sql-reporting:1433:10.110.65.47:1433 \
-    -L aws-production-sql-reporting:3389:10.110.65.47:3389 \
-    bastion'
 
 #   extract:  Extract most know archives with one command
 #   ---------------------------------------------------------
@@ -107,3 +81,5 @@ alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v exten
 # Docker
 alias dockerips="docker ps -q | xargs -n 1 docker inspect --format '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}} {{ .Name }}' | sed 's/ \// /'"
 
+# Dokku
+alias dokku='bash $HOME/.dokku/contrib/dokku_client.sh --rm'
