@@ -2,7 +2,7 @@
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/doug/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -51,7 +51,7 @@ CASE_SENSITIVE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(kubectl git git-extras git-flow colored-man-pages colorize brew osx npm docker node sudo web-search zsh-autosuggestions asdf)
+plugins=(kubectl git git-extras git-flow colored-man-pages colorize npm docker node sudo web-search zsh-autosuggestions asdf)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -87,7 +87,7 @@ autoload -Uz compinit && compinit
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-[[ -e ~/.profile ]] && emulate sh -c 'source ~/.profile'
+#[[ -e ~/.profile ]] && emulate sh -c 'source ~/.profile'
 
 # History
 HISTSIZE=1000000  # how many lines of history to keep in memory
@@ -116,7 +116,5 @@ export GOPATH=$HOME/dev/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
-export ASDF_DIR=$(brew --prefix asdf)
-
-# asdf package manager
-. $ASDF_DIR/asdf.sh
+. $HOME/.asdf/asdf.sh
+. $HOME/.asdf/completions/asdf.bash

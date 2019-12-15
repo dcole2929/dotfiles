@@ -20,7 +20,7 @@ ignored  = "!git ls-files -v | grep ^h | cut -c 3-"
 	defaultToUpstream = true
 	tool=kdiff3
 [core]
-	excludesfile = /Users/doug/.gitignore_global
+	excludesfile = $HOME/.gitignore_global
 	preloadindex = true
 	editor = /usr/local/bin/code -w
 
